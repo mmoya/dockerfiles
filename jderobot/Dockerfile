@@ -23,7 +23,11 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 # create jderobot user
-RUN mkdir /home/jderobot && groupadd -g 1000 jderobot && useradd -g 1000 -M -s /bin/bash -u 1000 jderobot && usermod -a -G sudo jderobot
+RUN mkdir /home/jderobot && \
+    groupadd -g 1000 jderobot && \
+    useradd -g 1000 -M -s /bin/bash -u 1000 jderobot && \
+    echo "jderobot ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/jderobot && \
+    chmod 0440 /etc/sudoers.d/jderobot
 
 # add osrf sources
 RUN echo deb http://packages.osrfoundation.org/gazebo/ubuntu trusty main >/etc/apt/sources.list.d/gazebo.list
