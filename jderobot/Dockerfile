@@ -30,15 +30,15 @@ RUN mkdir /home/jderobot && \
     chmod 0440 /etc/sudoers.d/jderobot
 
 # add osrf sources
-RUN echo deb http://packages.osrfoundation.org/gazebo/ubuntu trusty main >/etc/apt/sources.list.d/gazebo.list
-RUN curl -s http://packages.osrfoundation.org/gazebo.key | apt-key add -
+RUN echo deb http://packages.osrfoundation.org/gazebo/ubuntu trusty main >/etc/apt/sources.list.d/gazebo.list && \
+    curl -s http://packages.osrfoundation.org/gazebo.key | apt-key add -
 
 # add pcl sources
 RUN add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl
 
 # add jderobot sources
-RUN echo deb http://jderobot.org/apt trusty main >/etc/apt/sources.list.d/jderobot.list
-RUN curl -s http://jderobot.org/apt/jderobot-key.asc | apt-key add -
+RUN echo deb http://jderobot.org/apt trusty main >/etc/apt/sources.list.d/jderobot.list && \
+    curl -s http://jderobot.org/apt/jderobot-key.asc | apt-key add -
 
 # install dependencies
 RUN apt-get update && apt-get -y install jderobot-deps libqt4-opengl-dev
