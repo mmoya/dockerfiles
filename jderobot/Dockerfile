@@ -14,6 +14,7 @@ RUN \
 	git \
 	htop \
 	man \
+	openssh-client \
 	software-properties-common \
 	tree \
 	unzip \
