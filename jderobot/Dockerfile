@@ -30,23 +30,20 @@ RUN mkdir /home/jderobot && \
     echo "jderobot ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/jderobot && \
     chmod 0440 /etc/sudoers.d/jderobot
 
+# install software
 # add osrf sources
 RUN echo deb http://packages.osrfoundation.org/gazebo/ubuntu trusty main >/etc/apt/sources.list.d/gazebo.list && \
-    curl -s http://packages.osrfoundation.org/gazebo.key | apt-key add -
-
+    curl -s http://packages.osrfoundation.org/gazebo.key | apt-key add - && \
 # add pcl sources
-RUN add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl
-
+    add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl && \
 # add jderobot sources
-RUN echo deb http://jderobot.org/apt trusty main >/etc/apt/sources.list.d/jderobot.list && \
-    curl -s http://jderobot.org/apt/jderobot-key.asc | apt-key add -
-
+    echo deb http://jderobot.org/apt trusty main >/etc/apt/sources.list.d/jderobot.list && \
+    curl -s http://jderobot.org/apt/jderobot-key.asc | apt-key add - && \
 # install dependencies
-RUN apt-get update && \
-    apt-get -y install jderobot-deps libqt4-opengl-dev
-
+    apt-get update && \
+    apt-get -y install jderobot-deps libqt4-opengl-dev && \
 # cleanup
-RUN apt-get -y clean
+    apt-get -y clean
 
 ENV HOME /home/jderobot
 WORKDIR /home/jderobot
