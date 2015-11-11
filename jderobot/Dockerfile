@@ -6,8 +6,9 @@ ADD etc/apt/apt.conf.d/99local /etc/apt/apt.conf.d/99local
 RUN \
   sed -i -e 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   sed -i /^deb-src/d /etc/apt/sources.list && \
-  apt-get update && apt-get -y upgrade && \
-  apt-get install -y \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get -y install \
 	bash-completion \
 	build-essential \
 	curl \
@@ -41,8 +42,10 @@ RUN echo deb http://jderobot.org/apt trusty main >/etc/apt/sources.list.d/jderob
     curl -s http://jderobot.org/apt/jderobot-key.asc | apt-key add -
 
 # install dependencies
-RUN apt-get update && apt-get -y install jderobot-deps libqt4-opengl-dev
+RUN apt-get update && \
+    apt-get -y install jderobot-deps libqt4-opengl-dev
 
+# cleanup
 RUN apt-get -y clean
 
 ENV HOME /home/jderobot
