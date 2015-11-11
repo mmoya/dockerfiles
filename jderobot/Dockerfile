@@ -17,6 +17,7 @@ RUN \
 	man \
 	openssh-client \
 	software-properties-common \
+	tmux \
 	tree \
 	unzip \
 	vim \
