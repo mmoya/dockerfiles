@@ -20,8 +20,7 @@ RUN \
 	tree \
 	unzip \
 	vim \
-	wget && \
-  rm -rf /var/lib/apt/lists/*
+	wget
 
 # create jderobot user
 RUN mkdir /home/jderobot && \
@@ -43,7 +42,8 @@ RUN echo deb http://packages.osrfoundation.org/gazebo/ubuntu trusty main >/etc/a
     apt-get update && \
     apt-get -y install jderobot-deps libqt4-opengl-dev && \
 # cleanup
-    apt-get -y clean
+    apt-get -y clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/jderobot
 WORKDIR /home/jderobot
