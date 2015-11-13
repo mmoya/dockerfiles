@@ -4,7 +4,6 @@ MAINTAINER Maykel Moya <mmoya@mmoya.org>
 ADD etc/apt/apt.conf.d/99local /etc/apt/apt.conf.d/99local
 
 RUN \
-  sed -i -e 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   sed -i /^deb-src/d /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
