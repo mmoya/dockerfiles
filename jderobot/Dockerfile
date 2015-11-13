@@ -24,11 +24,12 @@ RUN \
 	wget
 
 # create jderobot user
-RUN mkdir /home/jderobot && \
-    groupadd -g 1000 jderobot && \
+RUN groupadd -g 1000 jderobot && \
     useradd -g 1000 -M -s /bin/bash -u 1000 jderobot && \
     echo "jderobot ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/jderobot && \
     chmod 0440 /etc/sudoers.d/jderobot
+    mkdir /home/jderobot && \
+    chown -R jderobot: /home/jderobot
 
 # install software
 # add osrf sources
