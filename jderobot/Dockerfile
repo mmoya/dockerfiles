@@ -12,11 +12,15 @@ RUN \
 	bash-completion \
 	build-essential \
 	curl \
+	gdb \
 	git \
 	htop \
+	libgl1-mesa-dri \
 	man \
+	mesa-utils \
 	openssh-client \
 	software-properties-common \
+	strace \
 	tmux \
 	tree \
 	unzip \
