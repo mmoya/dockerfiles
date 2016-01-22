@@ -18,7 +18,7 @@ RUN \
     curl -s http://jderobot.org/apt/jderobot-key.asc | apt-key add - && \
 # install dependencies
     apt-get update && \
-    apt-get -y install jderobot-deps libqt4-opengl-dev && \
+    apt-get -y install jderobot-deps-dev libqt4-opengl-dev && \
 # cleanup
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
