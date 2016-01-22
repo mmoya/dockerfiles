@@ -2,45 +2,18 @@ FROM ubuntu:14.04
 MAINTAINER Maykel Moya <mmoya@mmoya.org>
 
 RUN \
-  sed -i /^deb-src/d /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get -y install \
-	bash-completion \
-	build-essential \
-	curl \
-	gdb \
-	git \
-	htop \
-	libgl1-mesa-dri \
-	man \
-	mesa-utils \
-	openssh-client \
-	software-properties-common \
-	strace \
-	tmux \
-	tree \
-	unzip \
-	vim \
-	wget
-
-# create users and groups
-RUN groupadd -g 1000 jderobot && \
-    useradd -g 1000 -M -s /bin/bash -u 1000 jderobot && \
-    echo "jderobot ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/jderobot && \
-    chmod 0440 /etc/sudoers.d/jderobot && \
-    mkdir /home/jderobot && \
-    chown -R jderobot: /home/jderobot && \
-    groupadd -g 91 video-arch && \
-    usermod -a -G video,video-arch jderobot
-
-# install software
-# add osrf sources
-RUN echo deb http://packages.osrfoundation.org/gazebo/ubuntu trusty main >/etc/apt/sources.list.d/gazebo.list && \
+# prepare environment
+    sed -i /^deb-src/d /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get -y --no-install-recommends install \
+        curl && \
+# add osrf sources list
+    echo deb http://packages.osrfoundation.org/gazebo/ubuntu trusty main >/etc/apt/sources.list.d/gazebo.list && \
     curl -s http://packages.osrfoundation.org/gazebo.key | apt-key add - && \
-# add pcl sources
-    add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl && \
-# add jderobot sources
+# add pcl sources list
+    echo deb http://ppa.launchpad.net/v-launchpad-jochen-sprickerhof-de/pcl/ubuntu trusty main >/etc/apt/sources.list.d/pcl.list && \
+    apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys D51148574AAB18C259B43628D8A3751519274DEF && \
+# add jderobot sources list
     echo deb http://jderobot.org/apt trusty main >/etc/apt/sources.list.d/jderobot.list && \
     curl -s http://jderobot.org/apt/jderobot-key.asc | apt-key add - && \
 # install dependencies
