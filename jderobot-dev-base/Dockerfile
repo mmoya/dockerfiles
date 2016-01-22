@@ -25,8 +25,3 @@ RUN \
 # cleanup
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
-
-ENV HOME /home/jderobot
-WORKDIR /home/jderobot
-
-CMD ["bash"]
