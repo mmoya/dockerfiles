@@ -1,8 +1,6 @@
 FROM ubuntu:14.04
 MAINTAINER Maykel Moya <mmoya@mmoya.org>
 
-ADD etc/apt/apt.conf.d/99local /etc/apt/apt.conf.d/99local
-
 RUN \
   sed -i /^deb-src/d /etc/apt/sources.list && \
   apt-get update && \

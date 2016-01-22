@@ -1,3 +1,0 @@
-Acquire::Languages none;
-APT::Get::Show-Versions true;
-APT::Install-Recommends false;
