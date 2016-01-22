@@ -18,7 +18,7 @@ RUN \
     wget -t 0 -c -S -O - http://jderobot.org/apt/jderobot-key.asc | apt-key add - && \
 # install dependencies
     apt-get update && \
-    apt-get -y install \
+    apt-get -y --no-install-recommends install \
         jderobot-deps-dev \
         libqt4-opengl-dev \
         libqwt5-qt4-dev && \
