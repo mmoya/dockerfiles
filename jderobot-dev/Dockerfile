@@ -10,6 +10,7 @@ RUN \
     apt-get -y --no-install-recommends install \
         bash-completion \
         build-essential \
+        ca-certificates \
         gdb \
         git \
         htop \
@@ -23,6 +24,9 @@ RUN \
         unzip \
         neovim \
         wget && \
+# install neovim python package
+    wget -t 0 -c -O - https://bootstrap.pypa.io/get-pip.py | python2 && \
+    pip install neovim && \
 # cleanup
     apt-get -y --no-install-recommends purge \
         vim-tiny
