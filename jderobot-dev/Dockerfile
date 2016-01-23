@@ -33,8 +33,6 @@ RUN \
     chmod 0440 /etc/sudoers.d/jderobot
 
 ENV LANG C.UTF-8
-ENV HOME /home/jderobot
 ENV USER jderobot
-WORKDIR /home/jderobot
 
 CMD ["bash"]
