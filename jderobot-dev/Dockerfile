@@ -39,3 +39,5 @@ COPY ycm_core.so.Ubuntu /usr/local/lib/ycm_core.so
 
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["/bin/bash"]
