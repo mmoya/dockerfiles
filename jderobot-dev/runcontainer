@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+image=${1:-mmoya/jderobot-dev:latest}
+
+for device in `find /dev/dri -type c`; do
+    devmap="$devmap --device=$device:$device:rw"
+done
+
+container_name="jderobot"
+
+set -x
+
+# remove exited containers
+docker ps -aq --filter name=$container_name --filter status=exited | xargs -r docker rm
+
+cid=`docker ps -q --filter name=$container_name`
+
+if test -z "$cid"; then
+    docker run \
+        --ipc=host \
+        --name $container_name --hostname $container_name \
+        -it \
+        -e HOME -e SHELL -e USER \
+        -e DISPLAY -e SSH_AUTH_SOCK \
+        -v $HOME:$HOME -v /tmp:/tmp \
+        -w $PWD \
+        $devmap \
+        $image
+fi
