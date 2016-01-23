@@ -23,4 +23,4 @@ EOF
 
 echo DOCKER > /etc/debian_chroot
 
-exec sudo -E -u "$USER" -i
+exec sudo -EH -u $USER "$@"
