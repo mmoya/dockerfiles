@@ -3,6 +3,8 @@ MAINTAINER Maykel Moya <mmoya@mmoya.org>
 
 RUN \
 # install useful packages
+    echo deb http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu trusty main > /etc/apt/sources.list.d/neovim.list && \
+    apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 9DBB0BE9366964F134855E2255F96FCF8231B6DD && \
     apt-get update && \
     apt-get -y upgrade && \
     apt-get -y --no-install-recommends install \
@@ -19,7 +21,7 @@ RUN \
         tmux \
         tree \
         unzip \
-        vim \
+        neovim \
         wget && \
 # create users and groups
     groupadd -g 91 video-arch && \
