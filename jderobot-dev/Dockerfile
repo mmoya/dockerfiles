@@ -32,5 +32,10 @@ RUN \
         vim-tiny
 
 ENV LANG C.UTF-8
+
+# to be soft linked from YouCompleteMe/third_party/ycmd
+COPY ycm_client_support.so.Ubuntu /usr/local/lib/ycm_client_support.so
+COPY ycm_core.so.Ubuntu /usr/local/lib/ycm_core.so
+
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
