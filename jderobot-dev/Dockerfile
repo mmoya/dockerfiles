@@ -23,6 +23,9 @@ RUN \
         unzip \
         neovim \
         wget && \
+# cleanup
+    apt-get purge \
+        vim-tiny && \
 # create users and groups
     groupadd -g 91 video-arch && \
     useradd -G video-arch -M -s /bin/bash -u 1000 jderobot && \
