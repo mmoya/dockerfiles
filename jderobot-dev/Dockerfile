@@ -24,15 +24,9 @@ RUN \
         neovim \
         wget && \
 # cleanup
-    apt-get purge \
-        vim-tiny && \
-# create users and groups
-    groupadd -g 91 video-arch && \
-    useradd -G video-arch -M -s /bin/bash -u 1000 jderobot && \
-    echo "jderobot ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/jderobot && \
-    chmod 0440 /etc/sudoers.d/jderobot
+    apt-get -y --no-install-recommends purge \
+        vim-tiny
 
 ENV LANG C.UTF-8
-ENV USER jderobot
-
-CMD ["bash"]
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
