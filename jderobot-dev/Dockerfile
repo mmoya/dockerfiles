@@ -25,7 +25,7 @@ RUN \
         wget && \
 # create users and groups
     groupadd -g 91 video-arch && \
-    useradd -G video-arch -m -s /bin/bash -u 1000 jderobot && \
+    useradd -G video-arch -M -s /bin/bash -u 1000 jderobot && \
     echo "jderobot ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/jderobot && \
     chmod 0440 /etc/sudoers.d/jderobot
 
